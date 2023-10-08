@@ -7,7 +7,7 @@ export default props1 => (
         </header>
         <nav>
             <ul>
-                <li><a href="/admin">Inicio</a></li>
+                <li><a href="/user">Inicio</a></li>
                 <li><a href="/perfil_user">Perfil</a></li>
                 <li><a href="/perfil_prestamo">Prestamos</a></li>
             </ul>

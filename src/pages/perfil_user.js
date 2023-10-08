@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout_user"
-import Layout from "../components/Layout_user"
 import { useState } from 'react'
 
 const Formulario = () => {
