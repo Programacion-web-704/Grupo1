@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import styles from './loginstyle.css';
+
 
 const Login = () => {
     const router = useRouter();
@@ -10,11 +10,15 @@ const Login = () => {
     const handleLogin = () => {
         // Aquí puedes realizar la lógica de inicio de sesión.
         // Por ejemplo, puedes verificar las credenciales en el estado local.
-        if (email === 'usuario@example.com' && password === 'contraseña') {
+        if (email === 'aaaa@example.com' && password === '123') {
             // Simular un inicio de sesión exitoso
             alert('Inicio de sesión exitoso');
-            router.push('/dashboard');
-        } else {
+            router.push('/admin');
+        }else if (email == 'user@example.com' && password == '123'){
+            alert('Inicio de sesión exitoso');
+            router.push('/user');
+        } 
+        else {
             alert('Credenciales incorrectas');
         }
     };
@@ -25,7 +29,7 @@ const Login = () => {
     };
 
     return (
-        <div className={styles['login-container']} >
+        <div>
             <h1>Login</h1>
             <input
                 type="email"
