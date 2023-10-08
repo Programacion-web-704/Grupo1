@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout_user"
+import Layout from "../components/Layout_user"
 import { useState } from 'react'
 
 const Formulario = () => {
@@ -14,11 +15,7 @@ const Formulario = () => {
             Correo: "",
             Contraseña: "",
         },
-        Preferencias: {
-            Idioma: "",
-            Prefijo: "",
-            Color: "",
-        },
+
     }
     )
     const [seccionActual, setSeccionActual] = useState("DatosPersonales");
@@ -189,7 +186,7 @@ const Formulario = () => {
                         </p>
                     </>
                 )}
-                
+
                 <button onClick={doGuardar}>Grabar</button>
                 <button onClick={doEscribir}>Aceptar</button>
             </form>

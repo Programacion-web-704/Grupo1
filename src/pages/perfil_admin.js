@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout_admin"
+import Layout from "../components/Layout_admin"
 import { useState } from 'react'
 
 const Formulario = () => {
