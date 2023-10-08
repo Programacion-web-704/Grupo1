@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Head from 'next/head'
-import Layout from '../components/Layout_admin.js'
+import Layout from '../components/Layout_user.js'
 
 const Index2 = () => <Layout content={
 
