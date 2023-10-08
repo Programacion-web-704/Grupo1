@@ -1,11 +1,13 @@
-import Link from "next/link"
 
-const Index = () => {
+
+import Login from './login';
+
+const HomePage = () => {
     return (
         <div>
-            <h1>Home Page o Welcome Page</h1>
+            <Login />
         </div>
-    )
-}
+    );
+};
 
-export default Index
+export default HomePage;

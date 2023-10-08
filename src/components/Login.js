@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import styles from './loginstyle.css';
 
 const Login = () => {
     const router = useRouter();
@@ -7,7 +8,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        //revisar inicio de sesion
+        // Aquí puedes realizar la lógica de inicio de sesión.
+        // Por ejemplo, puedes verificar las credenciales en el estado local.
         if (email === 'usuario@example.com' && password === 'contraseña') {
             // Simular un inicio de sesión exitoso
             alert('Inicio de sesión exitoso');
@@ -17,8 +19,13 @@ const Login = () => {
         }
     };
 
+    const handleRegisterClick = () => {
+        // Navegar a la página de registro cuando se hace clic en el botón "Registrarse"
+        router.push('/register');
+    };
+
     return (
-        <div>
+        <div className={styles['login-container']} >
             <h1>Login</h1>
             <input
                 type="email"
@@ -33,6 +40,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={handleLogin}>Login</button>
+            <button onClick={handleRegisterClick}>Registrarse</button>
         </div>
     );
 };
