@@ -4,6 +4,7 @@ import Head from 'next/head'
 export default props => (
     <>
         <header>
+            <h1>BUSQUEDA</h1>
         </header>
         <nav>
 
@@ -13,7 +14,7 @@ export default props => (
                 <li><a href="/perfil_prestamo">Prestamos</a></li>
             </ul>
         </nav>
-
+        
 
 
         <main>
