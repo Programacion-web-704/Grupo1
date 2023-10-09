@@ -12,7 +12,7 @@ const Login = () => {
         // Por ejemplo, puedes verificar las credenciales en el estado local.
         if (email === 'admin@example.com' && password === '123') {
             // Simular un inicio de sesión exitoso
-            alert('Inicio de sesión exitoso');
+            alert('Inicio de sesión de Administrador exitoso');
             router.push('/admin');
         }else if (email == 'user@example.com' && password == '123'){
             alert('Inicio de sesión exitoso');
