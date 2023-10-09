@@ -9,7 +9,7 @@ export default props => (
             <ul>
                 <li><a href="/admin">Inicio</a></li>
                 <li><a href="/perfil_admin">Perfil</a></li>
-                <li><a href="/biblioteca">Bibliotecas</a></li>
+                <li><a href="/biblioteca_admin">Bibliotecas</a></li>
             </ul>
         </nav>
 
