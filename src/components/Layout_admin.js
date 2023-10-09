@@ -10,6 +10,7 @@ export default props => (
                 <li><a href="/admin">Inicio</a></li>
                 <li><a href="/perfil_admin">Perfil</a></li>
                 <li><a href="/biblioteca_admin">Bibliotecas</a></li>
+                <li><a href="/login">Log Out</a></li>
             </ul>
         </nav>
 
