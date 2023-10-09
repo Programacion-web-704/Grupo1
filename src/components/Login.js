@@ -10,7 +10,7 @@ const Login = () => {
     const handleLogin = () => {
         // Aquí puedes realizar la lógica de inicio de sesión.
         // Por ejemplo, puedes verificar las credenciales en el estado local.
-        if (email === 'aaaa@example.com' && password === '123') {
+        if (email === 'admin@example.com' && password === '123') {
             // Simular un inicio de sesión exitoso
             alert('Inicio de sesión exitoso');
             router.push('/admin');
