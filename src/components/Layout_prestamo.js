@@ -9,9 +9,10 @@ export default props => (
         <nav>
 
             <ul>
-                <li><a href="/admin">Inicio</a></li>
+                <li><a href="/user">Inicio</a></li>
                 <li><a href="/perfil_user">Perfil</a></li>
                 <li><a href="/perfil_prestamo">Prestamos</a></li>
+                <li><a href="/login">Log Out</a></li>
             </ul>
         </nav>
         
