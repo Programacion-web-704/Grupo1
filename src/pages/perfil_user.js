@@ -1,4 +1,5 @@
-import Layout from "@/components/Layout_user"
+
+import Layout from "../components/Layout_user"
 import { useState } from 'react'
 
 const Formulario = () => {
@@ -6,7 +7,6 @@ const Formulario = () => {
     const [state, setState] = useState({
         DatosPersonales: {
             Nombre: "",
-
             TipoDoc: "",
             NroDoc: "",
         },
@@ -44,49 +44,11 @@ const Formulario = () => {
         // se envia el formulario normalmente
         // usando fetch ... (T.B.D.)
     }
-
-    const doGuardar = async () => {
-        let formData = new FormData()
-        for (let [key, value] of Object.entries(state)) {
-            formData.append(key, value)
-        }
-
-        // aparenetement el formData no funciona bien
-        let params = new Map([])
-        formData.forEach((value, key) => {
-            params.set(key, value)
-        })
-
-        // Generar un Objeto JSON
-        let jsonObject = {}
-        params.forEach(
-            (value, key) => { jsonObject[key] = value }
-        )
-        console.log(JSON.stringify(jsonObject))
-
-        // Invocar a la API
-        try {
-            const req = await fetch(
-                `/api/contactoAPI`,
-                {
-                    method: 'POST',
-                    body: JSON.stringify({ jsonObject }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            const data = await req.json()
-            console.log(data)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    const mostrarSeccion = (seccion) => {
+const mostrarSeccion = (seccion) => {
         // Cambia la sección actual al hacer clic en los botones
         setSeccionActual(seccion);
     };
+
 
     const doEscribir = async () => {
         // Obtener el objeto JSON directamente del estado
@@ -186,8 +148,8 @@ const Formulario = () => {
                     </>
                 )}
 
-                <button onClick={doGuardar}>Grabar</button>
-                <button onClick={doEscribir}>Aceptar</button>
+
+                <button onClick={doEscribir}>Guardar</button>
             </form>
         </>
     )
@@ -198,7 +160,7 @@ const Contacto = () => {
     return (<Layout content={
         <>
             <div>
-                <h1> ...::: Hola, pepito :::... </h1>
+            <h1> ...::: Configuración de Perfil :::... </h1>
                 <Formulario />
             </div>
         </>
