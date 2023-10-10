@@ -1,5 +1,5 @@
 
-import Layout from "@/components/Layout_prestamo";
+import Layout from "../components/Layout_prestamo";
 import { useState } from "react";
 import librosjson from "@/components/libros.json";
 
@@ -99,7 +99,6 @@ const FormularioBiblio = () => {
 
 
 
-
 return (
   <div>
     <form onSubmit={handleBusquedaEnviar}>
@@ -171,5 +170,17 @@ return (
   );
 };
 
-export default FormularioBiblio;
+const funcion = () =>{
+  return (<Layout content={
+    <>
+    <h1>Bievenido a la sección de prestamos</h1>
+    <FormularioBiblio></FormularioBiblio>
+    </>
+  }></Layout>
+  )
+}
+
+
+
+export default funcion
 

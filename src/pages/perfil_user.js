@@ -84,13 +84,14 @@ const Formulario = () => {
             setState({
                 DatosPersonales: {
                     Nombre: "",
+                    Apellidos: "",
                     TipoDoc: "",
                     NroDoc: "",
                     ImagenPerfil: savedImage, // Restaura la imagen
                 },
                 Cuenta: {
-                    Correo: "",
-                    Contraseña: "",
+                    CuentaUsuario: "",
+                    Password: "",
                 },
             });
         } catch (err) {

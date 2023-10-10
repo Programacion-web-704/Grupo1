@@ -1,1 +1,1 @@
-{"jsonObject":{"DatosPersonales":{"Nombre":"ewe","TipoDoc":"","NroDoc":"1212","Apellidos":"wd"},"Cuenta":{"Correo":"","Contraseña":""},"Preferencias":{"Idioma":"","Prefijo":"","Color":""}}}
+{"jsonObject":{"DatosPersonales":{"Nombre":"","Apellidos":"","TipoDoc":"","NroDoc":"","ImagenPerfil":""},"Cuenta":{"CuentaUsuario":"aaaa@example.com","Password":"123"}}}
