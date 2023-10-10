@@ -1,134 +1,196 @@
 
-import Layout from "@/components/Layout_prestamo"
-import { useState } from "react"
+import Layout from "@/components/Layout_prestamo";
+import { useState } from "react";
+import librosjson from "@/components/libros.json";
 
-const FormularioBiblio=() => {
-    const[keyword,setKeyword] = useState("")
-    const[resultados,setResultados] = useState("")
+const FormularioBiblio = () => {
+  const [keyword, setKeyword] = useState("");
+  const [resultados, setResultados] = useState("");
+  const [editorial, setEditorial] = useState("");
+  const [isbn, setIsbn] = useState("");  // Nueva opción para el ISBN
+  const [opcionesSeleccionadas, setOpcionesSeleccionadas] = useState([]);
+  const [fechaReserva, setFechaReserva] = useState(null);
+  const [mostrarCalendario, setMostrarCalendario] = useState(false);
 
-    const[tipoRecurso,setTipoRecurso] = useState("")
-    const [opcionesSeleccionadas, setOpcionesSeleccionadas] = useState([]);
+  const handleCambioNombreLibro = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  const handleCambioEditorial = (event) => {
+    setEditorial(event.target.value);
+  };
+
+  const handleCambioIsbn = (event) => {
+    setIsbn(event.target.value);
+  };
+
+  const handleBusquedaEnviar = (event) => {
+    event.preventDefault();
+
+    // Realizar la búsqueda en el archivo JSON
+    const resultadosBusqueda = buscarEnJSON(librosjson, {
+      keyword,
+      editorial,
+      isbn,  // Agregar ISBN a los filtros
+      opcionesSeleccionadas,
+    });
+
+    // Actualizar el estado con los resultados
+    setResultados(resultadosBusqueda);
+  };
+
+  const handleLimpiar = () => {
+    setKeyword("");
+    setEditorial("");
+    setOpcionesSeleccionadas([]);
+    setResultados("");
+  };
+
+  const handleFiltros = (event) => {
+    const opcion = event.target.value;
+    if (opcionesSeleccionadas.includes(opcion)) {
+      const nuevasOpciones = opcionesSeleccionadas.filter(
+        (item) => item !== opcion
+      );
+      setOpcionesSeleccionadas(nuevasOpciones);
+    } else {
+      setOpcionesSeleccionadas([...opcionesSeleccionadas, opcion]);
+    }
+  };
+  const handleSeleccionarFecha = (fecha) => {
+    // Selecciona la fecha y cierra el calendario
+    setFechaReserva(fecha);
+    setMostrarCalendario(false);
+  };
+  
+  const mostrarAlerta = (mensaje) => {
+    alert(mensaje);
+  };
+  
+  const handleReserva = (libro) => {
+    // Abre el calendario al hacer clic en Reservar
+    setMostrarCalendario(true);
+  };
     
-    
 
-    const handleCambioNombreLibro = (event)=> {
-        setKeyword(event.target.value)
-    }
+  // Función para buscar en el archivo JSON
+ // Función para buscar en el archivo JSON
+ const buscarEnJSON = (json, filtros) => {
+  const resultados = json.filter((libro) => {
+    const cumpleFiltros =
+      (!filtros.keyword ||
+        (libro.titulo && libro.titulo.toLowerCase().includes(filtros.keyword.toLowerCase()))) &&
+      (!filtros.editorial ||
+        (libro.editorial && libro.editorial.toLowerCase().includes(filtros.editorial.toLowerCase()))) &&
+      (!filtros.isbn ||
+        (libro.ISBN && libro.ISBN.toLowerCase().includes(filtros.isbn.toLowerCase()))) &&  // Agregar búsqueda por ISBN
+      (filtros.opcionesSeleccionadas.length === 0 ||
+        filtros.opcionesSeleccionadas.some(
+          (filtro) =>
+            (libro.autor && libro.autor.toLowerCase().includes(filtro.toLowerCase())) ||
+            (libro.titulo && libro.titulo.toLowerCase().includes(filtro.toLowerCase()))
+        ));
 
-    const handleCambioResulRecurso = (event)=> {
-        setTipoRecurso(event.target.value)
-    }
-    
-    const handleBusquedaEnviar = (event) =>{
-        event.preventDefault()
-        setResultados('Elementos encontrados para: ${keyword}')
-    }
+    return cumpleFiltros;
+  });
 
-    const handleLimpiar =() =>{
-       
-        setKeyword("")
-        setTipoRecurso("")
-        setOpcionesSeleccionadas("")
-    }
+  return resultados;
+};
 
-    const handleFiltros = (event) => {
-        const opcion = event.target.value;
-        if (opcionesSeleccionadas.includes(opcion)) {
-          // Si la opción ya está seleccionada, quítala de las opciones seleccionadas
-          const nuevasOpciones = opcionesSeleccionadas.filter((item) => item !== opcion);
-          setOpcionesSeleccionadas(nuevasOpciones);
-        } else {
-          // Si la opción no está seleccionada, agrégala a las opciones seleccionadas
-          setOpcionesSeleccionadas([...opcionesSeleccionadas, opcion]);
-        }
-      };
-    return (
+
+
+
+return (
+  <div>
+    <form onSubmit={handleBusquedaEnviar}>
+      <h3>Ingrese palabra clave</h3>
+      <input
+        type="text"
+        value={keyword}
+        onChange={handleCambioNombreLibro}
+      />
+      <h4>Ingrese editorial</h4>
+      <input
+        type="text"
+        value={editorial}
+        onChange={handleCambioEditorial}
+      />
+      <h4>Ingrese ISBN</h4>
+      <input
+        type="text"
+        value={isbn}
+        onChange={handleCambioIsbn}
+      />
+
         <div>
-            
-            <form onSubmit={handleBusquedaEnviar}>
-            <h3>Ingrese palabra clave </h3>
-                <input 
-                type="text"
-                value={keyword}
-                onChange={handleCambioNombreLibro}
-                />
-            <h4>Ingrese tipo de recurso</h4>
+          <h4>Incluir búsqueda en:</h4>
+
+          <label>
             <input
-                type="text"
-                value={tipoRecurso}
-                onChange={handleCambioResulRecurso}
-                />
-            
-            <div>
-                <h4>Incluir busqueda en : </h4>
-           
-                <label> 
-                <input
-                type="checkbox"
-                value="filtro1"
-                checked={opcionesSeleccionadas.includes("filtro1")}
-                onChange={handleFiltros}
-                />
-                Título
-                </label>
-                <br/>
+              type="checkbox"
+              value="filtro1"
+              checked={opcionesSeleccionadas.includes("filtro1")}
+              onChange={handleFiltros}
+            />
+            Título
+          </label>
+          <br />
 
-                <label>
-                <input
-                type="checkbox"
-                value="filtro2"
-                checked={opcionesSeleccionadas.includes("filtro2")}
-                onChange={handleFiltros}
-                />
-                Autor
-                </label>
-                <br/>
-                <label>
-                <input
-                type="checkbox"
-                value="filtro3"
-                checked={opcionesSeleccionadas.includes("filtro3")}
-                onChange={handleFiltros}
-                />
-                Serie
-                </label>
-                <br/>
+          <label>
+            <input
+              type="checkbox"
+              value="filtro2"
+              checked={opcionesSeleccionadas.includes("filtro2")}
+              onChange={handleFiltros}
+            />
+            Autor
+          </label>
+          <br />
 
-                <label>
-                <input
-                type="checkbox"
-                value="filtro4"
-                checked={opcionesSeleccionadas.includes("filtro4")}
-                onChange={handleFiltros}
-                />
-                ISBN
-                </label>
-
-
-
-          
-            </div>
-            </form>
-            <button type="submit">Buscar</button>    
-            <button type="button" onClick={handleLimpiar}>Limpiar</button>
-
-            {resultados && <p>{resultados}</p>}
+          <button type="submit">Buscar</button>
+          <button type="button" onClick={handleLimpiar}>
+            Limpiar
+          </button>
         </div>
-    )
-}
-
-
-
-const Prestamo = ()=> {
-    return( <Layout content={
-        <>
-            <div>
-                <FormularioBiblio/>
-            </div>
-        </>
-         }
-    ></Layout>
         
-    )
-}
-export default Prestamo
+
+      </form>
+      
+
+      {resultados && (
+  <ul>
+     {resultados.map((libro) => (
+            <li key={libro.id}>
+              {libro.titulo} - {libro.autor}
+              <button onClick={() => handleReserva(libro)}>Reservar</button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Selector de fechas */}
+      {mostrarCalendario && (
+        <div>
+          <p>Selecciona la fecha de reserva:</p>
+          <input
+            type="date"
+            onChange={(e) => handleSeleccionarFecha(new Date(e.target.value))}
+          />
+        </div>
+      )}
+
+      {fechaReserva && (
+        <div>
+          <p>Fecha seleccionada: {fechaReserva.toDateString()}</p>
+          {/* Aquí puedes mostrar más detalles o enviar la fecha al backend para la reserva */}
+          <button onClick={() => mostrarAlerta("Reserva completada para el " + fechaReserva)}>
+            Confirmar Reserva
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default FormularioBiblio;
+
