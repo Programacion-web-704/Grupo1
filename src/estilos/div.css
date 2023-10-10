@@ -1,5 +1,10 @@
 div{
     text-align: center;
+    
+}
+
+div1{
+    text-align: center;
     display: grid;
     place-items: center;
     margin: auto;
