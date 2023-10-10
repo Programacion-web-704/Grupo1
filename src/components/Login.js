@@ -45,7 +45,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div1>
             <h1>Login</h1>
             <input
                 type="email"
@@ -61,7 +61,7 @@ const Login = () => {
             />
             <button onClick={handleLogin}>Login</button>
             <button onClick={handleRegisterClick}>Registrarse</button>
-        </div>
+        </div1>
     );
 };
 
