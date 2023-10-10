@@ -1,3 +1,4 @@
+// Register.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -5,10 +6,18 @@ const Register = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [registeredUsers, setRegisteredUsers] = useState([]);
 
     const handleRegister = () => {
-        // Aquí puedes realizar la lógica de registro.
-        // Por ejemplo, puedes guardar las credenciales en el estado local.
+        // Crear un nuevo usuario con el rol 'user'
+        const newUser = { email, password, role: 'user' };
+
+        // Almacenar las credenciales en el estado local (simulación)
+        localStorage.setItem('registeredUser', JSON.stringify(newUser));
+
+        // Agregar el nuevo usuario a la lista de usuarios registrados
+        setRegisteredUsers([...registeredUsers, newUser]);
+
         alert('Registro exitoso');
         router.push('/login');
     };

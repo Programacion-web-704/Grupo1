@@ -1,24 +1,40 @@
+// Login.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-
 
 const Login = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [registeredUsers, setRegisteredUsers] = useState([]);
+
+    // Agregar usuarios predefinidos
+    const predefinedUsers = [
+        { email: 'admin@example.com', password: '123', role: 'admin' },
+        { email: 'user@example.com', password: '123', role: 'user' },
+    ];
 
     const handleLogin = () => {
-        // Aquí puedes realizar la lógica de inicio de sesión.
-        // Por ejemplo, puedes verificar las credenciales en el estado local.
-        if (email === 'admin@example.com' && password === '123') {
-            // Simular un inicio de sesión exitoso
-            alert('Inicio de sesión de Administrador exitoso');
-            router.push('/admin');
-        }else if (email == 'user@example.com' && password == '123'){
-            alert('Inicio de sesión exitoso');
-            router.push('/user');
-        } 
-        else {
+        // Obtener las credenciales registradas del estado local (simulación)
+        const storedUser = JSON.parse(localStorage.getItem('registeredUser'));
+
+        // Combinar usuarios predefinidos con usuarios registrados
+        const combinedUsers = [...predefinedUsers, ...registeredUsers];
+
+        // Buscar si las credenciales coinciden en la lista de usuarios
+        const userMatch = combinedUsers.find(
+            (user) => user.email === email && user.password === password
+        );
+
+        if (userMatch) {
+            if (userMatch.role === 'admin') {
+                // Redirigir al usuario con rol 'admin' a la página '/admin'
+                router.push('/admin');
+            } else if (userMatch.role === 'user') {
+                // Redirigir al usuario con rol 'user' a la página '/user'
+                router.push('/user');
+            }
+        } else {
             alert('Credenciales incorrectas');
         }
     };

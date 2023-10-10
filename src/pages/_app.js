@@ -11,11 +11,6 @@ import '../estilos/loginstyle.css'
 import { AppProps } from 'next/app'
 import { DemoProvider } from './context/demo'
 
-/*
-export default function MyApp( {Component, pageProps}) {
-    return <Component { ...pageProps} />
-}
-*/
 
 export default function MyApp({ Component, pageProps }) {
     return (
