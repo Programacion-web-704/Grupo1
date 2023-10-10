@@ -5,7 +5,6 @@ import '../estilos/cuerpo.css'
 import '../estilos/div.css'
 import '../estilos/footer.css'
 import '../estilos/button.css'
-import '../estilos/loginstyle.css'
 
 
 import { AppProps } from 'next/app'

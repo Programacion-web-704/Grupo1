@@ -10,7 +10,7 @@
     text-align: center;
 }
 
-.login-container h1 {
+h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
@@ -25,7 +25,7 @@
     border-radius: 5px;
 }
 
-.login-container button {
+button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;

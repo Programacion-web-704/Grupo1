@@ -1,1 +1,1 @@
-{"jsonObject":{"DatosPersonales":{"Nombre":"","TipoDoc":"","NroDoc":"","ImagenPerfil":"blob:http://localhost:3000/dab8a727-d735-4d23-8d9f-8b078065fc56"},"Cuenta":{"Correo":"","Contraseña":""}}}
+{"jsonObject":{"DatosPersonales":{"Nombre":"a","TipoDoc":"","NroDoc":"","ImagenPerfil":"blob:http://localhost:3000/22b2add8-dd92-4743-aaa3-3c71231047ff","Apellidos":"a"},"Cuenta":{"Correo":"","Contraseña":""},"Preferencias":{"Idioma":"","Prefijo":"","Color":""}}}
