@@ -1,6 +1,9 @@
 
 div{
     text-align: center;
+}
+div > ul{
+    text-align: center;
     display: grid;
     place-items: center;
     margin: auto;

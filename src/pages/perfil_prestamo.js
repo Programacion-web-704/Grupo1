@@ -123,29 +123,8 @@ return (
       />
 
         <div>
-          <h4>Incluir búsqueda en:</h4>
-
-          <label>
-            <input
-              type="checkbox"
-              value="filtro1"
-              checked={opcionesSeleccionadas.includes("filtro1")}
-              onChange={handleFiltros}
-            />
-            Título
-          </label>
-          <br />
-
-          <label>
-            <input
-              type="checkbox"
-              value="filtro2"
-              checked={opcionesSeleccionadas.includes("filtro2")}
-              onChange={handleFiltros}
-            />
-            Autor
-          </label>
-          <br />
+          
+          
 
           <button type="submit">Buscar</button>
           <button type="button" onClick={handleLimpiar}>
