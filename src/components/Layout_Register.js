@@ -24,7 +24,7 @@ const Register = () => {
 
     return (
         <div>
-            <h1>Register</h1>
+            <h1>Registro</h1>
             <input
                 type="email"
                 placeholder="Email"
@@ -37,7 +37,7 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={handleRegister}>Register</button>
+            <button onClick={handleRegister}>Registro</button>
         </div>
     );
 };
