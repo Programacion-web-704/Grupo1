@@ -5,12 +5,12 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.addColumn(
       "Libros",
-      "usuario_id_usuario",//duda
+      "usuario_id_usuario",
       {
           type: Sequelize.INTEGER,
           references: {
-              model: "Usuarios",//duda
-              key: "id"//duda
+              model: "Usuarios",
+              key: "id"
           },
           onUpdate: "CASCADE",
           onDelete: "SET NULL",
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.removeColumn("Libro", "id_usuario");
+    return queryInterface.removeColumn("Libros", "usuario_id_usuario");
   }
 };
