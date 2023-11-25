@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Ruta para iniciar sesión
+// Ruta para registrar un nuevo usuario
 router.post('/', async (req, res) => {
-    // ... lógica de inicio de sesión ...
+    // ... lógica de registro ...
 });
 
 module.exports = router;
