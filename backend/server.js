@@ -12,10 +12,10 @@ const registeredUsers = [];
 
 // Ruta para registrar un nuevo usuario
 app.post('/api/register', (req, res) => {
-    const { email, password, role } = req.body;
+    const { email, password} = req.body;
 
     // Validación básica de campos
-    if (!email || !password || !role) {
+    if (!email || !password) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
     }
 
@@ -24,7 +24,7 @@ app.post('/api/register', (req, res) => {
         return res.status(400).json({ error: 'El usuario ya está registrado.' });
     }
 
-    const newUser = { email, password, role };
+    const newUser = { email, password };
     registeredUsers.push(newUser);
 
     return res.status(201).json({ message: 'Usuario registrado exitosamente.' });
