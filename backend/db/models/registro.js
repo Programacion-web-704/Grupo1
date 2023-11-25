@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Registro.belongsTo(models.Admin, { foreignKey: 'id_registro' });
     }
   }
   Registro.init({
