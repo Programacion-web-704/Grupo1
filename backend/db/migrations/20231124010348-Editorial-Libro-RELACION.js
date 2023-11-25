@@ -5,13 +5,13 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     
     return queryInterface.addColumn(
-      "Libros",
-      "editorial_id_editorial",  //duda
+      "Libros",  //crea la columna en esta tabla
+      "editorial_id_editorial",  //foreign key
       {
           type: Sequelize.INTEGER,
           references: {
-              model: "Editorials",//duda
-              key: "id" //duda
+              model: "Editorials",
+              key: "id" 
           },
           onUpdate: "CASCADE",
           onDelete: "SET NULL",
