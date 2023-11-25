@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Editorial.hasMany(models.Libro, { foreignKey: 'editorial_id_editorial' });
     }
   }
   Editorial.init({
