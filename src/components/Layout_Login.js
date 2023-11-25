@@ -6,7 +6,6 @@ const Login = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [registeredUsers, setRegisteredUsers] = useState([]);
 
     // Agregar usuarios predefinidos
     const predefinedUsers = [
@@ -14,28 +13,31 @@ const Login = () => {
         { email: 'user@example.com', password: '123', role: 'user' },
     ];
 
-    const handleLogin = () => {
-        // Obtener las credenciales registradas del estado local (simulación)
-        const storedUser = JSON.parse(localStorage.getItem('registeredUser'));
+    const handleLogin = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
 
-        // Combinar usuarios predefinidos con usuarios registrados
-        const combinedUsers = [...predefinedUsers, ...registeredUsers];
-
-        // Buscar si las credenciales coinciden en la lista de usuarios
-        const userMatch = combinedUsers.find(
-            (user) => user.email === email && user.password === password
-        );
-
-        if (userMatch) {
-            if (userMatch.role === 'admin') {
-                // Redirigir al usuario con rol 'admin' a la página '/admin'
-                router.push('/admin');
-            } else if (userMatch.role === 'user') {
-                // Redirigir al usuario con rol 'user' a la página '/user'
-                router.push('/user');
+            if (response.ok) {
+                // Iniciar sesión exitosa
+                const user = await response.json();
+                if (user.role === 'admin') {
+                    router.push('/admin');
+                } else if (user.role === 'user') {
+                    router.push('/user');
+                }
+            } else {
+                // Manejar errores de inicio de sesión
+                const errorData = await response.json();
+                alert(errorData.error);
             }
-        } else {
-            alert('Credenciales incorrectas');
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
         }
     };
 
