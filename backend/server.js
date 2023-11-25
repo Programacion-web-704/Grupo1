@@ -79,3 +79,23 @@ app.put('/api/datosUser', (req, res) => {
 
     return res.status(200).json({ message: 'Datos de usuario actualizados exitosamente.' });
 });
+
+app.put('/api/datosAdmin', (req, res) => {
+    const adminEmail = req.params.email;
+    const { newPassword, newRole } = req.body;
+
+    // Buscar al administrador por su correo electrónico
+    const adminIndex = registeredAdmins.findIndex(admin => admin.email === adminEmail);
+
+    if (adminIndex === -1) {
+        return res.status(404).json({ error: 'Administrador no encontrado.' });
+    }
+
+    // Actualizar la contraseña si se proporciona
+    if (newPassword) {
+        registeredAdmins[adminIndex].password = newPassword;
+    }
+
+
+    return res.status(200).json({ message: 'Datos de administrador actualizados exitosamente.' });
+});
