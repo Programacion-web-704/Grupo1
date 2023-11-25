@@ -20,7 +20,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.removeColumn("Reserva", "usuariov1_id_usuario");
+    return queryInterface.removeColumn("Reservas", "usuario_id_usuario");
 
   }
 };
