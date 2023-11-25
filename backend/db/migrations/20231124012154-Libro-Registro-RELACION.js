@@ -20,7 +20,8 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.removeColumn("Libro", "registro_id_registro");
+    return queryInterface.removeColumn("Libros", "registro_id_registro",);
     
   }
 };
+
