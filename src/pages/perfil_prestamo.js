@@ -24,19 +24,18 @@ const FormularioBiblio = () => {
     setIsbn(event.target.value);
   };
 
-  const handleBusquedaEnviar = (event) => {
+  const handleBusquedaEnviar = async (event) => {
     event.preventDefault();
 
-    // Realizar la búsqueda en el archivo JSON
-    const resultadosBusqueda = buscarEnJSON(librosjson, {
-      keyword,
-      editorial,
-      isbn,  // Agregar ISBN a los filtros
-      opcionesSeleccionadas,
-    });
-
-    // Actualizar el estado con los resultados
-    setResultados(resultadosBusqueda);
+    try {
+      const response = await fetch(
+        `/buscar-libros?keyword=${keyword}&editorial=${editorial}&isbn=${isbn}`
+      );
+      const resultados = await response.json();
+      setResultados(resultados);
+    } catch (error) {
+      console.error("Error al buscar en la base de datos", error);
+    }
   };
 
   const handleLimpiar = () => {
@@ -62,16 +61,16 @@ const FormularioBiblio = () => {
     setFechaReserva(fecha);
     setMostrarCalendario(false);
   };
-  
+
   const mostrarAlerta = (mensaje) => {
     alert(mensaje);
   };
-  
+
   const handleReserva = (libro) => {
     // Abre el calendario al hacer clic en Reservar
     setMostrarCalendario(true);
   };
-    
+
 
   // Función para buscar en el archivo JSON
  // Función para buscar en el archivo JSON
@@ -122,18 +121,18 @@ return (
       />
 
         <div>
-          
-          
+
+
 
           <button type="submit">Buscar</button>
           <button type="button" onClick={handleLimpiar}>
             Limpiar
           </button>
         </div>
-        
+
 
       </form>
-      
+
 
       {resultados && (
   <ul>
