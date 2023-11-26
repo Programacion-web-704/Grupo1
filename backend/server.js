@@ -45,11 +45,6 @@ app.put('/api/datosUser', (req, res) => {
         registeredUsers[userIndex].password = newPassword;
     }
 
-    // Actualizar el rol si se proporciona
-    if (newRole) {
-        registeredUsers[userIndex].role = newRole;
-    }
-
     return res.status(200).json({ message: 'Datos de usuario actualizados exitosamente.' });
 });
 
