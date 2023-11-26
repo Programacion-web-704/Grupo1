@@ -2,21 +2,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('libros', {
+    await queryInterface.createTable('Libros', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      isbn_libro: {
-        type: Sequelize.STRING
+      
+      isbn: {
+        type: Sequelize.INTEGER
       },
       titulo: {
         type: Sequelize.STRING
       },
       fecha_publicacion: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       genero: {
         type: Sequelize.STRING
@@ -25,34 +26,24 @@ module.exports = {
         type: Sequelize.STRING
       },
       paginas: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       stock: {
-        type: Sequelize.STRING
-      },
-      autor: {
-        type: Sequelize.STRING
-      },
-      estado: {
-        type: Sequelize.STRING
-      },
-      editorial: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       
+     
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: new Date()
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: new Date()
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('libros');
+    await queryInterface.dropTable('Libros');
   }
 };
