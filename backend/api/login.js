@@ -1,34 +1,30 @@
 const express = require('express');
-const router = express.Router();
-const { Client } = require('pg');
+const db = require('../db/models/index');
+const ruta = express.Router();
 
-const client = new Client({
-    user: 'postgres',
-    host: '127.0.0.1',
-    database: 'base3',
-    password: '12345678',
-    port: 3080,
-});
-
-
-client.connect();
-
-router.post('/', async (req, res) => {
-    const { email, password } = req.body;
-
+ruta.post('/', async (req, res) => {
     try {
-        const result = await client.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
+        const { usuario, contraseña } = req.body;
 
-        if (result.rows.length > 0) {
-            const user = result.rows[0];
-            res.status(200).json({ message: 'Inicio de sesión exitoso.', user });
+        // Buscar el usuario en la base de datos con carga de asociación
+        const logUser = await db.usuarios.findOne({
+            where: {
+                correo: usuario,
+                contrasena: contraseña,
+            },
+        });
+
+        if (logUser) {
+            // Usuario encontrado, devolver la información
+            return res.status(200).json(usuarioEncontrado).end();
         } else {
-            res.status(401).json({ error: 'Credenciales incorrectas.' });
+            // Usuario no encontrado, devolver un error 401
+            return res.status(401).end();
         }
     } catch (error) {
-        console.error('Error al iniciar sesión:', error);
-        res.status(500).json({ error: 'Error interno del servidor.' });
+        console.error("Error en la verificación de credenciales:", error);
+        return res.status(500).json({ error: "Hubo un error en el servidor." }).end();
     }
 });
 
-module.exports = router;
+module.exports = ruta;
