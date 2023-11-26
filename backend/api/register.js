@@ -14,12 +14,12 @@ const client = new Client({
 client.connect();
 
 router.post('/', async (req, res) => {
-    const { email, password, role } = req.body;
+    const { email, password} = req.body;
 
     try {
         const result = await client.query(
-            'INSERT INTO users(email, password, role) VALUES($1, $2, $3) RETURNING *',
-            [email, password, role]
+            'INSERT INTO users(email, password) VALUES($1, $2) RETURNING *',
+            [email, password]
         );
 
         const newUser = result.rows[0];
